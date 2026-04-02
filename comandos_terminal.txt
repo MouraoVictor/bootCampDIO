@@ -1,0 +1,15 @@
+del *   (delete) deleta arquivos
+ls      (list) lista arquivos no diretório
+cls     (clear) limpa terminal
+cd      (change directory) muda de diretório
+mkdir   (make directory) cria um diretório novo
+code    (vscode) abre o editor de código do vscode
+
+
+
+comandos de navegação de diretórios
+
+comandos npm e node
+npm init -y                 (para dar o yes em todas as opções ao criar o projeto)
+node [arquivo]              roda arquivo javascript
+node --watch [arquivo]     node fica vigiando arquivo

@@ -1,0 +1,13 @@
+{
+  "name": "mariokart03",
+  "version": "1.0.0",
+  "description": "Projeto da DIO fazendo o jogo do Mario Kart rolando dados pelo terminal do Node JS.",
+  "keywords": [],
+  "license": "ISC",
+  "author": "v-m",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

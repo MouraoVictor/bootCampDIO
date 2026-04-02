@@ -1,7 +1,7 @@
 {
-  "name": "meu-primeiro-projeto",
-  "version": "1.0.0",
-  "description": "",
+  "name": "my-project-nodejs",
+  "version": "2.2.1",
+  "description": "My first project with NodeJS",
   "homepage": "https://github.com/MouraoVictor/bootCampDIO#readme",
   "bugs": {
     "url": "https://github.com/MouraoVictor/bootCampDIO/issues"
@@ -11,10 +11,11 @@
     "url": "git+https://github.com/MouraoVictor/bootCampDIO.git"
   },
   "license": "ISC",
-  "author": "victor-m",
+  "author": "v-m",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "open": "echo \"ola mundo\" && exit 1"
   }
 }
