@@ -79,6 +79,28 @@ async function playRaceEngine(character1, character2) {
         if (block === "FIGHT") {
             let powerResult1 = diceResult1 + character1.power
             let powerResult2 = diceResult2 + character2.power
+
+            console.log(`🥊 ${character1.name} had a fight with ${character2.name}!🥊`);
+
+            await logRollResult(character1.name, "power", diceResult1, character1.power)
+            await logRollResult(character2.name, "power", diceResult2, character2.power)
+
+            if (powerResult1 > powerResult2) {
+                if (character2.points > 0) {
+                    character2.points--
+                    console.log(`${character1.name} won the figth. ${character2.name} lost one point 🐢`)
+                }
+            }
+            else if (powerResult1 < powerResult2) {
+                if (character1.points > 0) {
+                    character1.points--
+                    console.log(`${character2.name} won the figth. ${character1.name} lost one point 🐢`)
+                }
+            }
+            else {
+                console.log("Draw! No one has lost any points!");
+            }
+
         }
 
         if (TotalSkill1 > TotalSkill2) {
