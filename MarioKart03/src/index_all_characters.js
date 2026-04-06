@@ -1,4 +1,4 @@
-const player1 = {
+const playerMario = {
     name: 'Mario',
     speed: 4,
     handling: 3,
@@ -6,11 +6,43 @@ const player1 = {
     points: 0
 };
 
-const player2 = {
+const playerLuigi = {
     name: 'Luigi',
     speed: 3,
     handling: 4,
     power: 4,
+    points: 0
+};
+
+const playerPeach = {
+    name: 'Peach',
+    speed: 3,
+    handling: 4,
+    power: 2,
+    points: 0
+};
+
+const playerBowser = {
+    name: 'Bowser',
+    speed: 5,
+    handling: 2,
+    power: 5,
+    points: 0
+};
+
+const playerYoshi = {
+    name: 'Yoshi',
+    speed: 2,
+    handling: 4,
+    power: 3,
+    points: 0
+};
+
+const playerDonkeyKong = {
+    name: 'Donkey Kong',
+    speed: 2,
+    handling: 2,
+    power: 5,
     points: 0
 };
 
@@ -50,6 +82,22 @@ async function getRandomBlockForFight() {
             break;
     }
     return result;
+}
+
+async function getRandomPointOfFight() {
+    let random = Math.random()
+    let result
+
+    switch (true) {
+        case random < 0.50:
+            result = "Won"
+            break;
+
+        default:
+            result = "Nothing"
+            break;
+    }
+    return result
 }
 
 async function logRollResult(characterName, block, diceResult, attribute) {
@@ -127,6 +175,8 @@ async function playRaceEngine(character1, character2) {
                 damage = 2;
             }
 
+            const fightOutcome = await getRandomPointOfFight()
+
             if (powerResult1 > powerResult2) {
                 if (character2.points > 0) {
                     character2.points = character2.points - damage
@@ -134,6 +184,10 @@ async function playRaceEngine(character1, character2) {
                     console.log(`${character1.name} won the figth using a ${fightBlock}. ${character2.name} lost ${damage} point(s) 🐢`)
                 } else {
                     console.log(`${character1.name} won the figth using a ${fightBlock}, but ${character2.name} has no points to lose!`);
+                }
+                if (fightOutcome === "Won") {
+                    character1.points++;
+                    console.log(`${character1.name} won the fight and earned 1 turbo point!`);
                 }
             }
             else if (powerResult1 < powerResult2) {
@@ -143,6 +197,10 @@ async function playRaceEngine(character1, character2) {
                     console.log(`${character2.name} won the figth using a ${fightBlock}. ${character1.name} lost ${damage} point(s) 🐢`)
                 } else {
                     console.log(`${character2.name} won the figth using a ${fightBlock}, but ${character1.name} has no points to lose!`);
+                }
+                if (fightOutcome === "Won") {
+                    character2.points++;
+                    console.log(`${character2.name} won the fight and earned 1 turbo point!`);
                 }
             }
             else {
@@ -158,7 +216,7 @@ async function playRaceEngine(character1, character2) {
 }
 
 async function declareWinner(character1, character2) {
-    console.log(`Resultado Final:`);
+    console.log(`Final Result:`);
 
     console.log(`${character1.name}: ${character1.points} point(s)`);
     console.log(`${character2.name}: ${character2.points} point(s)`);
@@ -176,6 +234,10 @@ async function declareWinner(character1, character2) {
 }
 
 (async function main() {
+
+    const player1 = playerMario
+    const player2 = playerPeach
+
     console.log(`🏁🚨 Race between ${player1.name} and ${player2.name} starting...\n`)
 
     await playRaceEngine(player1, player2);
