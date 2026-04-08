@@ -1,0 +1,19 @@
+{
+  "name": "qrcode",
+  "version": "1.0.0",
+  "description": "Kit de utilidades para e-commerce",
+  "main": "index.js",
+  "scripts": {
+    "test:dev": "node --env-file=.env src/index.js",
+    "test:watch": "node  --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "prompt": "^1.3.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
