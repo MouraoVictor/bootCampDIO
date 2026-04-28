@@ -1,10 +1,12 @@
 "use strict";
-var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -13,14 +15,7 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __async = (__this, __arguments, generator) => {
   return new Promise((resolve, reject) => {
     var fulfilled = (value) => {
@@ -42,11 +37,14 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 
-// src/app.ts
-var import_express2 = __toESM(require("express"));
-
-// src/routes.ts
-var import_express = require("express");
+// src/services/players-services.ts
+var players_services_exports = {};
+__export(players_services_exports, {
+  createPlayerService: () => createPlayerService,
+  getPlayerByIdService: () => getPlayerByIdService,
+  getPlayerService: () => getPlayerService
+});
+module.exports = __toCommonJS(players_services_exports);
 
 // src/repositories/players-repository.ts
 var database = [
@@ -251,47 +249,9 @@ var createPlayerService = (player) => __async(null, null, function* () {
     return badRequest();
   }
 });
-
-// src/controllers/players-controller.ts
-var getPlayer = (req, res) => __async(null, null, function* () {
-  const httpResponse = yield getPlayerService();
-  res.status(httpResponse.statusCode).json(httpResponse.body);
-});
-var getPlayerById = (req, res) => __async(null, null, function* () {
-  const id = parseInt(req.params.id);
-  const httpResponse = yield getPlayerByIdService(id);
-  res.status(httpResponse.statusCode).json(httpResponse.body);
-});
-var postPlayer = (req, res) => __async(null, null, function* () {
-  const bodyValue = req.body;
-  const httpResponse = yield createPlayerService(bodyValue);
-  if (httpResponse) {
-    res.status(httpResponse == null ? void 0 : httpResponse.statusCode).json(httpResponse == null ? void 0 : httpResponse.body);
-  } else {
-    const response = yield badRequest();
-    res.status(response.statusCode).json(response.body);
-  }
-});
-
-// src/routes.ts
-var router = (0, import_express.Router)();
-router.get("/players", getPlayer);
-router.post("/players", postPlayer);
-router.get("/players/:id", getPlayerById);
-var routes_default = router;
-
-// src/app.ts
-function createApp() {
-  const app2 = (0, import_express2.default)();
-  app2.use(import_express2.default.json());
-  app2.use("/api", routes_default);
-  return app2;
-}
-var app_default = createApp;
-
-// src/server.ts
-var app = app_default();
-var port = process.env.PORT;
-app.listen(port, () => {
-  console.log("\u{1F525} Server running at port http://localhost:" + port);
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  createPlayerService,
+  getPlayerByIdService,
+  getPlayerService
 });
